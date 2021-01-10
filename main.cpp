@@ -1,16 +1,10 @@
 #include <bits/stdc++.h>
 
 #include <cstdlib>
+
 using namespace std;
 using namespace std::this_thread;
 using namespace std::chrono;
-#define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define _GLIBCXX_DEBUG
-typedef long long int ll;
-typedef long double ld;
-
-const double PI = acos(-1);
-#define all(n) n.begin(), n.end()
 
 vector<vector<bool>> g;  // grid
 int n;                   // grid size
@@ -55,7 +49,6 @@ void update() {
   for (int i = 1; i < n + 1; ++i)
     for (int j = 1; j < n + 1; ++j) {
       int count = count_alive_cells(i, j);
-      // cout << count << endl;
       tmp[i][j] = update_cell(g[i][j], count);
     }
   g = tmp;
