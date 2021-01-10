@@ -16,18 +16,25 @@ vector<vector<bool>> g;
 int n;  // grid size
 int step;
 
+random_device rnd;
+mt19937 mt(rnd());
+uniform_int_distribution<int> my_rand(0, 1);
+
 void init() {
   cout << "init" << endl;
   g.resize(n + 2, vector<bool>(n + 2, true));
   rep(i, n + 2) {
-    rep(j, n + 2) {}
+    rep(j, n + 2) { g[i][j] = my_rand(mt); }
   }
 }
 
-void update() { cout << "update" << endl; }
+void update() {
+  rep(i, n + 2) {
+    rep(j, n + 2) { g[i][j] = my_rand(mt); }
+  }
+}
 
 void display() {
-  cout << "display" << endl;
   for (int i = 0; i < n + 2; ++i) {
     for (int j = 0; j < n + 2; ++j) {
       if ((i == 0 || i == n + 1) && (j == 0 || j == n + 1))
@@ -57,7 +64,6 @@ int main(int argc, char *argv[]) {
     system("clear");  // コンソールをクリア
     update();
     display();
-    cout << step << endl;
     sleep_for(milliseconds(500));
   }
 }
