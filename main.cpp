@@ -12,26 +12,23 @@ typedef long double ld;
 const double PI = acos(-1);
 #define all(n) n.begin(), n.end()
 
-vector<vector<bool>> g;
-int n;  // grid size
-int step;
+vector<vector<bool>> g;  // grid
+int n;                   // grid size
 
+// settings for rand
 random_device rnd;
 mt19937 mt(rnd());
 uniform_int_distribution<int> my_rand(0, 1);
 
 void init() {
-  cout << "init" << endl;
-  g.resize(n + 2, vector<bool>(n + 2, true));
-  rep(i, n + 2) {
-    rep(j, n + 2) { g[i][j] = my_rand(mt); }
-  }
+  g.resize(n + 2, vector<bool>(n + 2, false));
+  for (int i = 1; i < n + 1; ++i)
+    for (int j = 1; j < n + 1; ++j) g[i][j] = my_rand(mt);
 }
 
 void update() {
-  rep(i, n + 2) {
-    rep(j, n + 2) { g[i][j] = my_rand(mt); }
-  }
+  for (int i = 1; i < n + 1; ++i)
+    for (int j = 1; j < n + 1; ++j) g[i][j] = my_rand(mt);
 }
 
 void display() {
@@ -56,14 +53,17 @@ int main(int argc, char *argv[]) {
     return 0;
   }
 
+  int step;
   n = stoi(argv[1]);
   step = stoi(argv[2]);
 
   init();
   while (step--) {
-    system("clear");  // コンソールをクリア
+    system("clear");  // clear console
     update();
     display();
-    sleep_for(milliseconds(500));
+    sleep_for(milliseconds(500));  // sleep
   }
+  system("clear");
+  return 0;
 }
